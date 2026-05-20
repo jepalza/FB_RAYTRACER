@@ -1,5 +1,6 @@
 # FB_RAYTRACER
-Freebasic conversion del programa trazador de rayos QRT Ray de 1989  
+Freebasic conversion del programa trazador de rayos "QRT Ray Trace" de 1989  
+Derecho original para Steve Koren
 
 Original "RAYSRC.ZIP" localizado en un CD-ROM "ShareWare" de 1990.    
 
