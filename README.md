@@ -25,12 +25,12 @@ No está garantizado el correcto funcionamiento del formato QRT, dado que me he 
 
 
 
-![ray1](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/balls.jpg)
+![ray1](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/BALLS.jpg)
 
-![ray2](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/building.jpg)
+![ray2](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/BUILDING.jpg)
 
-![ray3](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/eroom.jpg)
+![ray3](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/EROOM.jpg)
 
-![ray4](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/piano.jpg)
+![ray4](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/PIANO.jpg)
 
-![ray5](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/plus.jpg)
+![ray5](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/PLUS.jpg)
