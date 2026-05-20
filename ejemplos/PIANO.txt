@@ -1,0 +1,550 @@
+{ **   QRT image spec file for a baby grand piano with wood
+       grain.  This image requires QRT version 1.3 to run.
+
+       { this tests nested comments { } - new to 1.3 }
+
+       - Steve Koren  16 Jun 88
+                                                            ** }
+
+FILE_NAME = piano.BMP
+
+PATTERN ( name = PIANO_LEG_CUTOUT { ** trapezoid shape for leg ** }
+          x_size = 10
+          y_size = 44
+          POLYGON (
+            point = (0, 0)
+            point = (2, 0)
+            point = (0, 44)
+            point = (0, 0)
+          )
+          POLYGON (
+            point = (8, 0)
+            point = (10, 0)
+            point = (10, 44)
+            point = (8, 0)
+          )
+        )
+
+BEGIN_INSTANCES
+
+  NAME = PIANO_LEG       { ** define an instance for this so we ** }
+  BEGIN_BBOX             { ** don't have to keep repeating the  ** }
+                         { ** parallelogram definitions         ** }
+    PARALLELOGRAM (
+      diff = (.5, .1, .1)
+      loc = (2, 0, 0)
+      v1  = (0, 0, 10)
+      v2  = (-2, 44, 0)
+      remove = PIANO_LEG_CUTOUT
+    )
+
+    PARALLELOGRAM (
+      diff = (.5, .1, .1)
+      loc = (0, 0, 2)
+      v1  = (10, 0, 0)
+      v2  = (0, 44, -2)
+      remove = PIANO_LEG_CUTOUT
+    )
+
+  END_BBOX
+
+END_INSTANCES
+
+PATTERN ( name    = STRINGS,
+          x_size  = 6,
+          y_size  = 5,
+          RECTANGLE (
+            diff    = (.9, .9, .9)
+            start_x = 0,
+            end_x   = 2.5
+            start_y = 0
+            end_y   = 5
+          )
+         )
+
+PATTERN ( name    = WOOD_GRAIN,
+          x_size  = 10,
+          y_size  = 11,
+
+          POLYGON (
+            diff  = (.43, .1, .1)
+            point = (1, 0)      point = (1.2, 1)
+            point = (1.4, 3)    point = (1.4, 4)
+            point = (.8, 5)     point = (.5, 6)
+            point = (.2, 7)     point = (.2, 8.4)
+            point = (.8, 10)    point = (1, 11)
+            point = (2, 11)     point = (1, 9)
+            point = (.6, 8)     point = (.7, 7)
+            point = (1.4, 6)    point = (1.8, 5)
+            point = (1.8, 3)    point = (2.2, 2)
+            point = (2.2, 1)    point = (2, 0)
+            point = (1, 0)
+          )
+          POLYGON (
+            diff  = (.44, .22, .1)
+            point = (1.8, 8)    point = (2, 7)
+            point = (2.5, 6)    point = (2.8, 5.2)
+            point = (3, 5)      point = (3.4, 5.4)
+            point = (3.4, 6)    point = (3.3, 7)
+            point = (3.8, 8)    point = (3.8, 9)
+            point = (3.4, 9.8)  point = (3, 10)
+            point = (2.4, 9.8)  point = (2, 9)
+            point = (1.8, 8)
+          )
+          POLYGON (
+            diff  = (.55, .41, .1)
+            point = (2.8, 7.2)  point = (3.1, 8)
+            point = (3.1, 9)    point = (3, 9.1)
+            point = (2.9, 9)    point = (2.6, 8.6)
+            point = (2.6, 8)    point = (2.8, 7.2)
+          )
+          POLYGON (
+            diff  = (.44, .22, .1)
+            point = (4, 0)      point = (3.6, .6)
+            point = (3, 2)      point = (3.6, 3)
+            point = (3.8, 4.6)  point = (4.2, 5)
+            point = (4.8, 8)    point = (3.6, 9)
+            point = (4, 11)     point = (5, 11)
+            point = (5.2, 10)   point = (5.2, 9)
+            point = (5.6, 7.5)  point = (5.4, 6)
+            point = (4, 4)      point = (4, 2)
+            point = (5, 0)      point = (4, 0)
+          )
+          POLYGON (
+            diff  = (.44, .27, .1)
+            point = (6, 0)      point = (6, .8)
+            point = (5.4, 2)    point = (5.4, 3)
+            point = (5.8, 5)    point = (6, 6)
+            point = (6.1, 8)    point = (6, 11)
+            point = (6.4, 11)   point = (6.6, 9)
+            point = (6.6, 8)    point = (6.8, 7)
+            point = (6.4, 5)    point = (6.4, 4)
+            point = (6, 3)      point = (6.4, 1)
+            point = (6.2, 0)    point = (6, 0)
+          )
+          POLYGON (
+            diff  = (.45, .2, .1)
+            point = (7.2, 0)    point = (7.2, 1)
+            point = (6.8, 2.2)  point = (7, 3.2)
+            point = (7.4, 3)    point = (7.8, 1)
+            point = (7.8, 0)    point = (7.2, 0)
+          )
+          POLYGON (
+            diff  = (.45, .2, .1)
+            point = (7.2, 11)   point = (7.4, 9)
+            point = (7.2, 8.6)  point = (7.2, 7.6)
+            point = (7.4, 7.6)  point = (7.9, 10)
+            point = (7.8, 11)   point = (7.2, 11)
+          )
+          POLYGON (
+            diff  = (.40, .14, .1)
+            point = (8.4, 0)    point = (8.6, 3)
+            point = (8.6, 4)    point = (8, 7)
+            point = (8.2, 8)    point = (8.2, 10)
+            point = (8.4, 11)   point = (9, 11)
+            point = (8.9, 8)    point = (9.4, 6)
+            point = (9.4, 4.4)  point = (9, 2.2)
+            point = (9, 0)
+          )
+        )
+
+PATTERN ( name    = PIANO_TOP,
+          x_size  = 108,
+          y_size  = 85,
+
+          POLYGON (
+            point = (0, 65)      { ** This is the part of the     }
+            point = (3, 74)      {    piano top to remove from    }
+            point = (8, 78)      {    a parallelogram          ** }
+            point = (14, 81)
+            point = (20, 83)
+            point = (42, 83)
+            point = (50, 80)
+            point = (56, 76)
+            point = (60, 70)
+            point = (63, 60)
+            point = (68, 48)
+            point = (80, 37)
+            point = (90, 30)
+            point = (100, 25)
+            point = (106, 20)
+            point = (108, 15)
+            point = (108, 85)
+            point = (0, 85)
+            point = (0, 65)
+          )
+        )
+
+PATTERN ( name   = KEYBOARD,
+          x_size = 14,
+          y_size = 8,
+
+          RECTANGLE (                  { ** C natural ** }
+            start_x = 0,    start_y = 0
+            end_x   = 1.9   end_y   = 8
+            diff    = (.9, .9, .9)
+            amb     = (.4, .4, .4)
+          )
+
+          RECTANGLE (                  { ** D natural ** }
+            start_x = 2,    start_y = 0
+            end_x   = 3.9   end_y   = 8
+            diff    = (.9, .9, .9)
+            amb     = (.4, .4, .4)
+          )
+
+          RECTANGLE (                  { ** E natural ** }
+            start_x = 4,    start_y = 0
+            end_x   = 5.9   end_y   = 8
+            diff    = (.9, .9, .9)
+            amb     = (.4, .4, .4)
+          )
+
+          RECTANGLE (                  { ** F natural ** }
+            start_x = 6,    start_y = 0
+            end_x   = 7.9   end_y   = 8
+            diff    = (.9, .9, .9)
+            amb     = (.4, .4, .4)
+          )
+
+          RECTANGLE (                  { ** G natural ** }
+            start_x = 8,    start_y = 0
+            end_x   = 9.9   end_y   = 8
+            diff    = (.9, .9, .9)
+            amb     = (.4, .4, .4)
+          )
+
+          RECTANGLE (                  { ** A natural ** }
+            start_x = 10,    start_y = 0
+            end_x   = 11.9   end_y   = 8
+            diff    = (.9, .9, .9)
+            amb     = (.4, .4, .4)
+          )
+
+          RECTANGLE (                  { ** B natural ** }
+            start_x = 12,    start_y = 0
+            end_x   = 13.9   end_y   = 8
+            diff    = (.9, .9, .9)
+            amb     = (.4, .4, .4)
+          )
+
+          RECTANGLE (                  { ** C sharp ** }
+            start_x = 1,   start_y = 3
+            end_x   = 1.9, end_y   = 8
+            diff    = (0, 0, 0)
+          )
+
+          RECTANGLE (                  { ** D sharp ** }
+            start_x = 3,   start_y = 3
+            end_x   = 3.9, end_y   = 8
+            diff    = (0, 0, 0)
+          )
+
+          RECTANGLE (                  { ** F sharp ** }
+            start_x = 7,   start_y = 3
+            end_x   = 7.9, end_y   = 8
+            diff    = (0, 0, 0)
+          )
+
+          RECTANGLE (                  { ** G sharp ** }
+            start_x = 9,   start_y = 3
+            end_x   = 9.9, end_y   = 8
+            diff    = (0, 0, 0)
+          )
+
+          RECTANGLE (                  { ** A sharp ** }
+            start_x = 11,   start_y = 3
+            end_x   = 11.9, end_y   = 8
+            diff    = (0, 0, 0)
+          )
+        )
+
+PATTERN ( x_size = 30,                 { ** Striped pattern ** }
+          y_size = 30,
+          name   = STRIPE,
+
+          RECTANGLE (
+            start_x = 0,
+            start_y = 0,
+            end_x   = 30,
+            end_y   = 5,
+            diff    = (.1,.1,.1),
+          )
+        )
+
+
+{ *********************  OBJECTS  ********************* }
+
+{ ** ground ** }
+
+PARALLELOGRAM ( loc  = (  -10000, 0,  -10000),
+                v1   = (  0, 0, 20000),
+                v2   = (20000, 0,    0),
+
+                diff = ( 1, 1, 0),
+                pattern = STRIPE
+                xmult = 2
+                ymult = 2
+              )
+
+PARALLELOGRAM ( loc     = (150, 40, -50)
+                v1      = (0, 0, 108)
+                v2      = (85, 0, 0)
+                remove  = PIANO_TOP,
+                diff    = (.2, .2, .2)
+                pattern = STRINGS
+                xmult   = .5
+               )
+
+{ ** piano top ** }
+
+PARALLELOGRAM ( loc     = (150, 50, -50),
+                v1      = (0, 50, 95.73),
+                v2      = (85, 0, 0),
+                remove  = PIANO_TOP,
+                diff    = (.55, .41, .1),
+                dither  = 4,
+                pattern = WOOD_GRAIN
+                xmult   = 1.5
+                ymult   = 1.5
+              )
+
+{ ** Piano sides ** }
+
+BEGIN_BBOX
+
+  BEGIN_BBOX
+
+    PARALLELOGRAM ( loc  = (150, 40, -50)
+                    v1   = (0, 10, 0)
+                    v2   = (65, 0, 0)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    PARALLELOGRAM ( loc  = (215, 40, -50)
+                    v1   = (0, 10, 0)
+                    v2   = (9, 0, 3)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    PARALLELOGRAM ( loc  = (224, 40, -47)
+                    v1   = (0, 10, 0)
+                    v2   = (4, 0, 5)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+  END_BBOX
+
+  BEGIN_BBOX
+
+    PARALLELOGRAM ( loc  = (228, 40, -42)
+                    v1   = (0, 10, 0)
+                    v2   = (3, 0, 6)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    BEGIN_BBOX
+      PARALLELOGRAM ( loc  = (231, 40, -36)
+                      v1   = (0, 10, 0)
+                      v2   = (2, 0, 6)
+                      diff = (.55, .41, .1)
+                      pattern = WOOD_GRAIN
+                    )
+
+      PARALLELOGRAM ( loc  = (233, 40, -30)
+                      v1   = (0, 10, 0)
+                      v2   = (0, 0, 22)
+                      diff = (.55, .41, .1)
+                      pattern = WOOD_GRAIN
+                    )
+    END_BBOX
+
+    PARALLELOGRAM ( loc  = (233, 40, -8)
+                    v1   = (0, 10, 0)
+                    v2   = (-3, 0, 8)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+  END_BBOX
+
+END_BBOX
+
+BEGIN_BBOX
+
+  BEGIN_BBOX
+
+    PARALLELOGRAM ( loc  = (230, 40, 0)
+                    v1   = (0, 10, 0)
+                    v2   = (-4, 0, 6)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    PARALLELOGRAM ( loc  = (226, 40, 6)
+                    v1   = (0, 10, 0)
+                    v2   = (-6, 0, 4)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    PARALLELOGRAM ( loc  = (220, 40, 10)
+                    v1   = (0, 10, 0)
+                    v2   = (-10, 0, 3)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+  END_BBOX
+
+  BEGIN_BBOX
+
+    PARALLELOGRAM ( loc  = (210, 40, 13)
+                    v1   = (0, 10, 0)
+                    v2   = (-12, 0, 5)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    BEGIN_BBOX
+      PARALLELOGRAM ( loc  = (198, 40, 18)
+                      v1   = (0, 10, 0)
+                      v2   = (-11, 0, 12)
+                      diff = (.55, .41, .1)
+                      pattern = WOOD_GRAIN
+                    )
+
+      PARALLELOGRAM ( loc  = (187, 40, 30)
+                      v1   = (0, 10, 0)
+                      v2   = (-7, 0, 10)
+                      diff = (.55, .41, .1)
+                      pattern = WOOD_GRAIN
+                    )
+    END_BBOX
+
+    PARALLELOGRAM ( loc  = (180, 40, 40)
+                    v1   = (0, 10, 0)
+                    v2   = (-5, 0, 10)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+  END_BBOX
+
+  BEGIN_BBOX
+
+    PARALLELOGRAM ( loc  = (175, 40, 50)
+                    v1   = (0, 10, 0)
+                    v2   = (-5, 0, 6)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    PARALLELOGRAM ( loc  = (170, 40, 56)
+                    v1   = (0, 10, 0)
+                    v2   = (-5, 0, 2)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+    PARALLELOGRAM ( loc  = (165, 40, 58)
+                    v1   = (0, 10, 0)
+                    v2   = (-15, 0, 0)
+                    diff = (.55, .41, .1)
+                    pattern = WOOD_GRAIN
+                  )
+
+  END_BBOX
+
+END_BBOX
+
+BEGIN_BBOX
+
+  BEGIN_BBOX
+    { ** keyboard ** }
+
+    PARALLELOGRAM ( loc    = (140, 44, -45)
+                    v1     = (0, 0, 98)
+                    v2     = (8, 0, 0)
+                    pattern= KEYBOARD
+                    diff   = (0, 0, 0)
+                  )
+    { ** boarder for keyboard ** }
+
+    PARALLELOGRAM ( loc    = (138, 43.95, -50)
+                    v1     = (0, 0, 108)
+                    v2     = (12, 0, 0)
+                    diff   = (.55, .41, .2)
+                  )
+
+  END_BBOX
+
+  PARALLELOGRAM ( loc    = (150, 44, -50)
+                  v1     = (0, 0, 108)
+                  v2     = (0, 6, 0)
+                  diff   = (.55, .41, .2)
+                  pattern = WOOD_GRAIN
+                )
+
+  PARALLELOGRAM ( loc    = (138, 40, -50)
+                  v1     = (0, 0, 108)
+                  v2     = (0, 4, 0)
+                  diff   = (.55, .41, .1)
+                )
+
+  PARALLELOGRAM ( loc    = (138, 40, -50)
+                  v1     = (12, 0, 0)
+                  v2     = (0, 4, 0)
+                  diff   = (.55, .41, .1)
+                )
+END_BBOX
+
+BEGIN_BBOX
+
+  INSTANCE_OF ( name = PIANO_LEG       { ** three piano legs ** }
+                pos  = (155, 0, -45)
+              )
+
+  INSTANCE_OF ( name = PIANO_LEG
+                pos  = (155, 0, 45)
+              )
+END_BBOX
+
+INSTANCE_OF ( name = PIANO_LEG
+              pos  = (220, 0, -25)
+            )
+
+{ ** prop for top of piano ** }
+
+  PARALLELOGRAM ( loc = (155, 50, 55)
+                  v1  = (3, 0, 0)
+                  v2  = (0, 43, -20)
+                  diff = (.55, .41, .1)
+                )
+{ ** An observer ** }
+
+OBSERVER ( loc    = (75 , 85, -65),
+           lookat = (190, 30, 0)
+         )
+
+{ ** A lamp ** }
+
+LAMP ( loc = (50, 120, -80),
+       radius = 5,
+       dist = 145
+     )
+
+LAMP ( loc = (270, 120, 60)
+       radius = 5
+       dist   = 60
+     )
+
+SKY  ( horiz  = (.1, .1, .65),
+       zenith = (.1, .1, .65),
+       dither = 1
+     )
+
+FOC_LENGTH = 50
+

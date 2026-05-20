@@ -1,0 +1,285 @@
+{ **************************************************
+
+   Glass table with vase and candy bowl.  This
+   is the first test of glass surfaces, and came out
+   surprisingly well - it actually does look like
+   glass!  This image requires QRT 1.4 to run.
+
+   Rendered with QRT rayracing system
+
+   Steve Koren -  23 AUG 88
+
+  ************************************************** }
+
+
+FILE_NAME = Table.BMP
+
+PATTERN ( x_size = 80,
+          y_size = 30,
+          name   = BLOCK,
+
+          RECTANGLE (
+            start_x = 3,  start_y = 3,
+            end_x   = 77, end_y   = 27,
+            diff    = (.8, .7, .4);
+          )
+        )
+
+PATTERN ( x_size = 90,
+          y_size = 90,
+          name   = FLOOR,
+
+          RECTANGLE (
+            start_x = 0,  start_y = 0,
+            end_x   = 55, end_y   = 55,
+            diff    = (.1, .8, .1)
+          )
+
+          RECTANGLE (
+            start_x = 60, start_y = 0
+            end_x   = 85  end_y   = 55
+            diff    = (.2, .3, .8)
+          )
+
+          RECTANGLE (
+            start_x = 0,  start_y = 60
+            end_x   = 55  end_y   = 85
+            diff    = (.2, .3, .8)
+          )
+        )
+
+BEGIN_INSTANCES
+
+  { ** glass table leg - hollow glass cylender ** }
+
+  NAME = table_leg;
+  BEGIN_BBOX
+
+    QUADRATIC ( loc     = (0, 0, 0),
+                a       = 1, b  = 0, c  = 1,
+                d       = 300,
+
+                xmin    = -18, xmax = 18,
+                ymin    = 0,   ymax = 70,
+                zmin    = -18, zmax = 18,
+
+                diff    = (0, 0, 0),
+                trans   = (.8, .8, .8),
+                mirror  = (.20, .20, .20),
+                index   = 1.31,
+                density = (.021, .021, .021)
+              )
+
+    QUADRATIC ( loc     = (0, 0, 0),
+                a       = 1, b  = 0, c  = 1,
+                d       = 144,
+
+                xmin    = -12, xmax = 12,
+                ymin    = 0,   ymax = 70,
+                zmin    = -12, zmax = 12,
+
+                diff    = (0, 0, 0),
+                trans   = (1, 1, 1),
+                mirror  = (.1, .1, .1),
+                index   = 1.33,
+                density = (.022, .022, .022)
+              )
+  END_BBOX
+
+END_INSTANCES
+
+{ ******************** GROUND ********************** }
+
+PARALLELOGRAM ( loc = (-10000, 0, -10000),
+                v1  = (0,0, 20000),
+                v2  = (20000, 0, 0)
+
+                diff    = (.1, .1, .1),
+                pattern = BLOCK
+              )
+
+
+{ ******************** OBJECTS ********************** }
+
+{ ** FLOOR ** }
+
+PARALLELOGRAM ( loc  = (80, .01, -20),
+                v1   = (240, 0, 0),
+                v2   = (0, 0, 240),
+                diff = (0, 0, 0)
+
+                pattern = FLOOR
+                xmult   = .8,
+                ymult   = .8
+              )
+
+{ ** TABLE LEGS ** }
+
+BEGIN_BBOX
+  INSTANCE_OF ( name   = table_leg,
+                loc    = (140, 0, 40)
+              )
+
+  INSTANCE_OF ( name   = table_leg,
+                loc    = (260, 0, 40)
+              )
+END_BBOX
+
+BEGIN_BBOX
+  INSTANCE_OF ( name   = table_leg,
+                loc    = (140, 0, 160)
+              )
+
+  INSTANCE_OF ( name   = table_leg,
+                loc    = (260, 0, 160)
+              )
+END_BBOX
+
+{ ** TABLE TOP ** }
+
+BEGIN_BBOX
+
+  PARALLELOGRAM ( loc      = (100, 70, 0),
+                  v1       = (0, 0, 200),
+                  v2       = (200, 0, 0),
+
+                  diff     = (0, 0, 0),
+                  trans    = (.8, .8, .8),
+                  mirror   = (.20, .20, .20),
+                  index    = 1.31,
+                  density  = (.012, .012, .012)
+                )
+
+  PARALLELOGRAM ( loc      = (100, 85, 0),
+                  v1       = (0, 0, 200),
+                  v2       = (200, 0, 0),
+
+                  diff     = (0, 0, 0),
+                  trans    = (1, 1, 1),
+                  mirror   = (.20, .20, .20),
+                  index    = 1.31,
+                  density  = (.012, .012, .012)
+                )
+
+
+  { ** SIDES ** }
+
+  PARALLELOGRAM ( loc = (100, 70, 0),
+                  v1  = (0, 0, 200),
+                  v2  = (0, 15, 0),
+
+                  diff     = (0, 0, 0),
+                  trans    = (.8, .8, .8),
+                  mirror   = (.20, .20, .20),
+                  index    = 1.33,
+                  density  = (.012, .012, .012)
+                )
+
+  PARALLELOGRAM ( loc = (100, 70, 0),
+                  v1  = (200, 0, 0),
+                  v2  = (0, 15, 0),
+
+                  diff     = (0, 0, 0),
+                  trans    = (.8, .8, .8),
+                  mirror   = (.20, .20, .20),
+                  index    = 1.33,
+                  density  = (.012, .012, .012)
+                )
+
+  PARALLELOGRAM ( loc = (100, 70, 200),
+                  v1  = (200, 0, 0),
+                  v2  = (0, 15, 0),
+
+                  diff     = (0, 0, 0),
+                  trans    = (.8, .8, .8),
+                  mirror   = (.20, .20, .20),
+                  index    = 1.31,
+                  density  = (.012, .012, .012)
+                )
+
+  PARALLELOGRAM ( loc = (300, 70, 0),
+                  v1  = (0, 0, 200),
+                  v2  = (0, 15, 0),
+
+                  diff     = (0, 0, 0),
+                  trans    = (.8, .8, .8),
+                  mirror   = (.20, .20, .20),
+                  index    = 1.31,
+                  density  = (.012, .012, .012)
+                )
+
+END_BBOX
+
+{ ** CANDY BOWL  & VASE ** }
+
+BEGIN_BBOX
+
+  BEGIN_BBOX
+    QUADRATIC ( loc     = (200, 100, 100),
+                a       = 1, b  = 2, c  = 1,
+                d       = 900,
+
+                xmin    = -30, xmax = 30,
+                ymin    = -15, ymax = 0,
+                zmin    = -30, zmax = 30,
+
+                diff    = (1, .1, .1),
+                reflect = .8
+                sreflect= 20
+              )
+
+    SPHERE   ( loc      = (185, 95, 110),
+               radius   = 7,
+               diff     = (.1, .1, 1)
+             )
+
+    SPHERE   ( loc      = (200, 93, 80),
+               radius   = 7,
+               diff     = (.1, 1, .1)
+             )
+
+  END_BBOX
+
+  { ** VASE ** }
+
+  BEGIN_BBOX
+
+    QUADRATIC ( loc     = (260, 85, 50),
+                a       = 1, b = 0, c = 1,
+                d       = 100,
+
+                xmin    = -10, xmax = 10,
+                ymin    = 0,   ymax = 50,
+                zmin    = -10, zmax = 10,
+
+                diff    = (.1, .7, .1),
+                reflect = .7,
+                sreflect=20
+              )
+  END_BBOX
+
+END_BBOX
+
+OBSERVER ( loc    = (-50, 180, -30)
+           lookat = (180, 50, 100)
+         )
+
+SKY ( horiz  = (.10, .1, .75)
+      zenith = (.10, .1, .60)
+      dither = 1
+    )
+
+LAMP ( loc = (150, 250, -80)
+       radius = 5,
+       dist = 250
+     )
+
+LAMP ( loc = (250, 50, 250),
+       radius = 5,
+       dist   = 60
+     )
+
+
+FOC_LENGTH = 65
+
+

@@ -1,0 +1,236 @@
+           BEGIN_INSTANCES
+
+                   QUADRATIC ( loc     = (0, 0, 0),
+                       name    = X_AXIS_QUAD
+
+                       a       = 0,
+                       b       = 1,
+                       c       = 1,
+                       d       = 120,
+                       xmin    =    0,     xmax = 100,
+                       ymin    =  0,     ymax =  11,
+                       zmin    =  0,     zmax =  11,
+                       diff   = (.4,.4,.4),
+                       amb     = (.4, .4, .4)
+                       mirror  = (0.5, 0.5, 0.5),
+                       dither  = 2
+                     )
+
+                   QUADRATIC ( loc     = (0, 0, 0),
+                       name    = Y_AXIS_QUAD
+
+                       a       = 1,
+                       b       = 0,
+                       c       = 1,
+                       d       = 120,
+                       xmin    =  0,     xmax =  11,
+                       ymin    =    0,     ymax = 100,
+                       zmin    =  0,     zmax =  11,
+                       diff   = (.4,.4,.4),
+                       amb     = (.4, .4, .4)
+                       mirror  = (0.5, 0.5, 0.5),
+                       dither  = 2
+                     )
+                   QUADRATIC ( loc     = (0, 0, 0),
+                       name    = Z_AXIS_QUAD
+                       a       = 1,
+                       b       = 1,
+                       c       = 0,
+                       d       = 120,
+                       xmin    =  0,     xmax =  11,
+                       ymin    =  0,     ymax =  11,
+                       zmin    =    0,     zmax = 100,
+                       diff   = (.4,.4,.4),
+                       amb     = (.4, .4, .4)
+                       mirror  = (0.5, 0.5, 0.5),
+                       dither  = 2
+                     )
+           END_INSTANCES
+
+           { ** A pattern for the ground ** }
+
+           PATTERN ( x_size = 50,
+                     y_size = 50,
+                     name   = CHECK,
+                     RECTANGLE (
+                       start_x = 0,
+                       start_y = 0,
+                       end_x   = 25,
+                       end_y   = 25,
+                       diff    = (1, .2, .2)
+                       dither  = 1
+                     )
+                     RECTANGLE (
+                       start_x = 25,
+                       start_y = 25,
+                       end_x   = 50,
+                       end_y   = 50,
+                       diff    = (1, .2, .2)
+                       dither  = 1
+                     )
+                   )
+
+           { ** The actual world starts here ** }
+
+           BEGIN_BBOX
+
+               BEGIN_BBOX       { ** This is the lower half ** }
+
+                   BEGIN_BBOX
+
+                       SPHERE ( loc = (0, 0, 0),        { ** back ** }
+                                radius = 20,
+                                diff = (1., .1, .1),
+                              )
+
+                       SPHERE ( loc = (100, 0, 0),
+                                radius = 20,
+                                diff = (.4, 0.7, .1),
+                              )
+
+                       INSTANCE_OF ( name = X_AXIS_QUAD,
+                                     loc  = (0, 0, 0)
+                                   )
+
+                   END_BBOX
+
+                   BEGIN_BBOX                           { ** front ** }
+                       SPHERE ( loc = (0, 0, 100),
+                                radius = 20,
+                                diff = (.1, .1, 1),
+                              )
+
+                       SPHERE ( loc = (100, 0, 100),
+                                radius = 20,
+                                diff = (0.7, .4, .1),
+                              )
+
+                       INSTANCE_OF ( name = X_AXIS_QUAD,
+                                     loc  = (0, 0, 100)
+                                   )
+
+                   END_BBOX
+
+                   INSTANCE_OF ( name = Z_AXIS_QUAD,
+                                 loc  = (0, 0, 0)
+                               )
+
+                   INSTANCE_OF ( name = Z_AXIS_QUAD,
+                                 loc  = (100, 0, 0)
+                               )
+
+               END_BBOX
+
+               BEGIN_BBOX       { ** This is the upper half ** }
+
+                   BEGIN_BBOX                           { ** back ** }
+
+                       SPHERE ( loc = (0, 100, 0),
+                                radius = 20,
+                                diff = (1., .1, .1),
+                              )
+
+                       SPHERE ( loc = (100, 100, 0),
+                                radius = 20,
+                                diff = (.1, .5, .8),
+                              )
+
+                       INSTANCE_OF ( name = X_AXIS_QUAD,
+                                     loc  = (0, 100, 0)
+                                   )
+
+                   END_BBOX
+
+                   BEGIN_BBOX                           { ** front ** }
+
+                       SPHERE ( loc = (0, 100, 100),
+                                radius = 20,
+                                diff = (1., .1, .1),
+                              )
+
+                       SPHERE ( loc = (100, 100, 100),
+                                radius = 20,
+                                diff = (.1, .1, 1),
+                              )
+
+                       INSTANCE_OF ( name = X_AXIS_QUAD,
+                                     loc  = (0, 100, 100)
+                                   )
+
+                   END_BBOX
+
+                   INSTANCE_OF ( name = Z_AXIS_QUAD,
+                                 loc  = (0, 100, 0)
+                               )
+
+                   INSTANCE_OF ( name = Z_AXIS_QUAD,
+                                 loc  = (100, 100, 0)
+                               )
+
+               END_BBOX
+
+               { ** four vertical cylinders ** }
+
+               INSTANCE_OF ( name = Y_AXIS_QUAD,
+                             loc  = (0, 0, 0)
+                           )
+
+               INSTANCE_OF ( name = Y_AXIS_QUAD,
+                             loc  = (0, 0, 100)
+                           )
+
+               INSTANCE_OF ( name = Y_AXIS_QUAD,
+                             loc  = (100, 0, 0)
+                           )
+
+               INSTANCE_OF ( name = Y_AXIS_QUAD,
+                             loc  = (100, 0, 100)
+                           )
+           END_BBOX
+			  
+    BEGIN_BBOX
+	 { invento mio }
+		 QUADRATIC ( loc     = (100, 0, 100),
+						 a       = 1, b = 0, c = 1,
+						 d       = 130,
+
+						 xmin    = -10, xmax = 10,
+						 ymin    =   0, ymax = 100,
+						 zmin    = -30, zmax = 30, { ** si -zmax <> +zmin, el cilindro no cierra ** }
+
+						 diff    = (.7, .0, .0),
+						 dither  = 0,
+						 reflect = .4,
+						 sreflect= 30
+					  )
+    END_BBOX
+	 
+           PARALLELOGRAM ( loc  = (-10000, -60, -10000),
+                           v1   = ( 20000,   0,      0),
+                           v2   = (     0,   0,  20000),
+
+                           pattern = check,
+                           xmult   = 2,
+                           ymult   = 2,
+                           dither = 1,
+                           diff    = (.1, 1, .1)
+                         )
+           OBSERVER ( loc    = (50, 70, 250),
+                      lookat = (50, 50, 50)
+                    )
+           LAMP ( loc = (70, 250, 350),
+                  radius = 5,
+                  dist = 325
+                )
+           LAMP ( loc = (60, 80, 210),
+                  radius = 25,
+                  dist = 75
+                )
+
+           FOC_LENGTH = 60
+
+           SKY  ( horiz  = (0, 0, .55),
+                  zenith = (0, 0, .25),
+                  dither = 1
+                )
+FILE_NAME = IMAGE4.BMP

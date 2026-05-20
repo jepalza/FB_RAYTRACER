@@ -1,0 +1,212 @@
+{**************************************************
+    Walls with sphere - demonstrates pattern
+    mapping to sphere surfaces.
+    Rendered with QRT ray tracer on Amiga 1000
+    - Steve Koren   8 Jun 88
+ **************************************************}
+
+FILE_NAME = Wall_Sphere.BMP
+{ *********   Some pattern definitions ********** }
+PATTERN ( x_size = 16,                 { ** A stripe pattern ** }
+          y_size = 8,                  { ** for the sphere ** }
+          name   = MIRROR_STRIPE,
+          RECTANGLE (
+            start_x = 0, start_y = 0,
+            end_x   = 16, end_y   = 4,
+            diff    = (.1, .1, .1),
+            mirror  = (.8, .8, .8),
+            dither  = 0,
+          )
+        )
+PATTERN ( x_size = 60,                 { ** Checkered pattern ** }
+          y_size = 60,
+          name   = CHECK,
+          RECTANGLE (
+            start_x = 0,
+            start_y = 0,
+            end_x   = 30,
+            end_y   = 30,
+            diff    = (.1,1.0,.1),
+            dither  = 0,
+          )
+          RECTANGLE (
+            start_x = 30,
+            start_y = 30,
+            end_x   = 60,
+            end_y   = 60,
+            diff    = (.1,1.0,.1),
+            dither  = 0,
+          )
+        )
+PATTERN ( x_size = 40,                 { ** Checkered pattern ** }
+          y_size = 40,
+          name   = CHECK_BLUE,
+          RECTANGLE (
+            start_x = 0,
+            start_y = 0,
+            end_x   = 20,
+            end_y   = 20,
+            diff    = (.7,.2,.7)
+            amb     = (.32, .32, .32),
+            reflect = .55
+            sreflect= 20
+            dither  = 0,
+          )
+          RECTANGLE (
+            start_x = 20,
+            start_y = 20,
+            end_x   = 40,
+            end_y   = 40,
+            diff    = (.7,.5,.7),
+            amb     = (.32, .32, .32),
+            reflect = .55
+            sreflect= 20
+            dither  = 0,
+          )
+        )
+PATTERN ( x_size = 80,                    { ** brick pattern ** }
+          y_size = 50,
+          name   = BRICK,
+          RECTANGLE (                     { 1st half brick 1 }
+            start_x = 0, start_y = 2,
+            end_x   = 18, end_y   = 23,
+            diff    = (1.00, .20, .20);
+            dither  = 0,
+          )
+          RECTANGLE (                     { 2nd hald brick 1 }
+            start_x = 62, start_y = 2,
+            end_x   = 80, end_y   = 23,
+            diff    = (1.00, .20, .20);
+            dither  = 0,
+          )
+          RECTANGLE (                     { brick 2 }
+            start_x = 22, start_y = 2,
+            end_x   = 58, end_y   = 23,
+            diff    = (.80, .20, .20);
+            dither  = 0,
+          )
+          RECTANGLE (                     { brick 3 }
+            start_x = 2, start_y = 27,
+            end_x   = 38, end_y   = 48,
+            diff    = (.85, .35, .10);
+            dither  = 0,
+          )
+          RECTANGLE (                     { brick 4 }
+            start_x = 42, start_y = 27,
+            end_x   = 78, end_y   = 48,
+            diff    = (.70, .25, .20);
+            dither  = 0,
+          )
+        )
+{ *********************  OBJECTS  ********************* }
+{ ** ground ** }
+PARALLELOGRAM ( loc  = (  -10000, 0,  -10000),
+                v1   = (20000, 0,    0),
+                v2   = (  0, 0, 20000),
+                diff = (  .8, .8, 0),
+                dither  = 0,
+                pattern = CHECK
+                xmult = 2
+                ymult = 2
+              )
+
+BEGIN_BBOX
+    BEGIN_BBOX
+        SPHERE ( loc = (200, 50, -80),
+                 radius = 35,
+                 diff = (.7, .3, .5),
+                 pattern = MIRROR_STRIPE,
+                 xmult   = 1.5,
+                 ymult   = 1.5
+               )
+        QUADRATIC ( loc = (200, 0, -80),
+                    a    = 1,
+                    b    = 0,
+                    c    = 1,
+                    d    = 150,
+                    xmin = -13,
+                    xmax = 13,
+                    ymin = 0,
+                    ymax = 50,
+                    zmin = -13,
+                    zmax = 13,
+                    diff = (.1, .1, .1),
+                    mirror = (.8, .8, .8)
+                  )
+    END_BBOX
+
+    BEGIN_BBOX
+        SPHERE ( loc      = (200, 90, 80),
+                 radius   = 35,
+                 diff     = (.3, .3, .8),
+                 amb      = (.32, .32, .32),
+                 reflect  = .60
+                 sreflect = 20
+                 pattern = CHECK_BLUE,
+                 xmult   = 1.0,
+                 ymult   = 1.0
+               )
+        QUADRATIC ( loc = (200, 0, 80),
+                    a    = 1,
+                    b    = 0,
+                    c    = 1,
+                    d    = 150,
+                    xmin = -13,
+                    xmax = 13,
+                    ymin = 0,
+                    ymax = 90,
+                    zmin = -13,
+                    zmax = 13,
+                    diff = (.1, .1, .1),
+                    mirror = (.8, .8, .8)
+                  )
+    END_BBOX
+END_BBOX
+
+BEGIN_BBOX
+    { ** a small brick wall ** }
+    PARALLELOGRAM ( loc = (150, 00, -15),
+                    v1  = (0, 0, 30),
+                    v2  = (0, 100, 0)
+                    diff = (1, 1, 1),
+                    pattern = BRICK
+                    xmult = .5,
+                    ymult = .5
+                  )
+    PARALLELOGRAM ( loc = (150, 00, -15),
+                    v1  = (100, 0, 0),
+                    v2  = (0, 100, 0)
+                    diff = (1, 1, 1),
+                    pattern = BRICK
+                    xmult = .5,
+                    ymult = .5
+                  )
+    PARALLELOGRAM ( loc = (150, 00, 15),
+                    v1  = (100, 0, 0),
+                    v2  = (0, 100, 0)
+                    diff = (1, 1, 1),
+                    pattern = BRICK
+                    xmult = .5,
+                    ymult = .5
+                  )
+END_BBOX
+
+{ ** An observer ** }
+OBSERVER ( loc    = (-20 , 70, -40),
+           lookat = (200, 50, 0)
+         )
+{ ** A lamp ** }
+LAMP ( loc = (120, 120, -50),
+       radius = 5,
+       dist = 80
+     )
+LAMP ( loc = (120, 150, 80),
+       radius = 5,
+       dist = 70
+     )
+SKY  ( horiz  = (.2, .2, .55),
+       zenith = (.1, .1, .25),
+       dither = 1
+     )
+
+

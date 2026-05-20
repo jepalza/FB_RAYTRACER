@@ -1,0 +1,75 @@
+PATTERN ( x_size = 16,
+          y_size = 16,
+          name   = CHECK,
+     RECTANGLE (
+          start_x = 0, start_y = 0,
+          end_x   = 8, end_y   = 8,
+          diff    = (.50, .50, .70)
+          dither = 2
+     )
+     RECTANGLE (
+          start_x = 8,  start_y = 8,
+          end_x   = 16, end_y   = 16,
+          diff    = (.50, .50, .30)
+          dither = 2
+     )
+)
+
+sphere (loc = (0,35,0)
+        radius = 35
+        amb = (.40, .30, .30)
+        diff = (.06, .09, .09)
+        mirror = (.01, .01, .01)
+        trans = (.90, .90, .90)
+        index = 1.33,
+        reflect  = 1.00,
+        sreflect = 15,
+        dither = 3
+        density = (.00097,.00097,.00097)
+        )
+
+sphere (loc = (0,35,0)
+        radius = 15
+        amb = (.40, .30, .30)
+        diff = (.60, .90, .90)
+        mirror = (.40, .40, .40)
+        trans = (.90, .90, .90)
+        index = 9.03,
+        reflect  = 1.00,
+        sreflect = 15,
+        dither = 3
+        density = (.12,.12,.12)
+        )
+
+PARALLELOGRAM (  loc = (-10000, 0, -10000),
+                 v1  = ( 20000, 0,      0),
+                 v2  = ( 0,     0,  20000),
+              pattern = CHECK,
+              amb = (.80, .80, .65)
+              diff = (.30, .40, .75)
+              mirror = (.90, .90, .90)
+              trans = (.10, .10, .10)
+              index   = 200
+               dither  = 3
+               sreflect= 5
+               reflect = .750
+)
+
+LAMP ( loc = (-12, -34, -156),
+     dist = 20,
+     radius = 50 )
+
+LAMP ( loc = (-72, 20, 156),
+     dist = 70,
+     radius = 80 )
+
+SKY ( zenith  = (.20, .2, .85),
+    horiz   = (.70, .12, .25),
+    dither = 3
+    )
+
+OBSERVER ( loc     = (50, 50, 50),
+         lookat  = (0,  35,  0),
+         );
+FILE_NAME = image1.BMP
+

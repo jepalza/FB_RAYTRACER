@@ -1,0 +1,94 @@
+*******************************************************************
+
+    ISVGA256.BGI  --   A Super VGA BGI driver for Turbo C and Pascal
+                       that integrates support for multiple SVGA chipsets
+                       into one driver.
+
+   ---------------------------------------
+   | To order send:  $35.00 to:          |
+   |             Thomas Design           |
+   |             P.O. Box 586            |
+   |             Stillwater Oklahoma     |
+   |             74076                   |
+   |                                     |
+   | (Please use order form in this doc) |
+   ---------------------------------------
+
+                  --   Due to a limitation in both TC and TP you can't
+                       use setgraphmode() to set a mode higher than 0ah
+                       without patching the compilers.  A patch is supplied
+                       in this archive that, using Borland's PATCH.COM,
+                       will increase this limit to 40 modes.
+                       To install the patch just run the PATGRPTC.BAT file.
+                       Make sure Patch.com is in your search path.
+
+                  --   Trident and Chips and Tech vga support is in the
+                       driver.  Autodetect currently will not detect those
+                       chipsets.  To use a vga card based on either of the
+                       above two chipsets you need to force the BGI to use
+                       ISVGA256.BGI and then use setgraphmode(...) to select
+                       the appropriate mode.  Let us know what vga cards work
+                       using those two chipsets.....
+
+
+    Cards supported:  Video 7,  Paradise,  ATI,  Tecmar,  Orchid,  Genoa,
+                      Compaq VGA, HP VGA, STB, Trident, and Chips 'n Tech
+             Others:  If your VGA card uses the SVGA chipset from either:
+                      Paradise or Tseng Labs your card will probably work
+                      with these drivers.  The same should hold true for
+                      the Trident and Chips 'n Tech chipset vga's.  You
+                      may need to override autodetect.
+
+----------------------------------------------------------------------------
+ Cost:  (registered owners of other $15 drivers pay: $25.00)
+        (registered owners of 4 or more $15.00 drivers can upgrade free)
+        (new buyers:             $35.00)
+
+
+ Note:  the following are known bugs in the shareware versions of our drivers
+        and have been fixed in the registered versions.
+          --  Textwidth and Textheight returned the wrong values.
+          --  Putimage/Getimage at certain x,y locations would fail
+
+ Note:  All of the drivers have had another pass of optimizations done.
+        Performance improvements are especially impressive in the 16-color
+        drivers.
+          --  Horizontal & Vertical vectors now use their own high speed
+              routines.
+          --  16-color mode solid fills use their own high speed routine.
+          --  Bank-selection in extended VGA modes doesn't impact the
+              graphics routines nearly as much due to JUMP optimization.
+
+---------------- Order form for other drivers available ------------
+       These drivers cost $15.00 per driver.  Mark with: __X__ for choice.
+
+               (ATI VGA)    (Video 7)    (Paradise)    (Tecmar)  (Tseng Labs)
+256 color BGI: ATI256.BGI   VID256.BGI   PAR256.BGI   TEC256.BGI  ORC256.BGI
+      Turbo C:  _____       _____        _____        _____       _____
+ Turbo Pascal:  _____       _____        _____        _____       _____
+
+ 16 color BGI: ATI16.BGI    VID16.BGI    PAR16.BGI    TEC16.BGI   ORC16.BGI
+      Turbo C:  _____       _____        _____        _____       _____
+ Turbo Pascal:  _____       _____        _____        _____       _____
+
+** new addition!  $25.00     (supports multiple video pages for animation)
+  Tweaked 256: TWK256.BGI    (runs on register standard VGA's)
+      Turbo C:  _____
+ Turbo Pascal:  _____
+
+** new addition!  $35.00  (unless your upgrading, which is $25.00)
+ Merged 256 color driver:  ISVGA256.BGI
+      Turbo C:  _____
+ Turbo Pascal:  _____
+
+** new addition!  $35.00  (unless your upgrading, which is $25.00)
+ Merged 16 color driver:  ISVGA16.BGI
+      Turbo C:  _____
+ Turbo Pascal:  _____
+
+    Diskette form:    3 1/2" ____ 5 1/4" ____
+
+---------------------------------------------------------
+  Soon to come:   HPPCL.BGI  --  HP LaserJet  PCL   (printer command language)
+                  HPGL.BGI   --  HP Plotter
+

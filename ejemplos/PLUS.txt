@@ -1,0 +1,235 @@
+{**************************************************
+
+    QRT source for abstract thing shaped sort of
+    like a dumbell supported by levitating
+    blue rings.  (it might well bring millions if
+    auctioned off as modern art).
+
+    - Steve Koren   9 Jun 88
+
+ **************************************************}
+
+
+FILE_NAME = Plus.BMP
+
+{ *********   Some pattern definitions ********** }
+
+PATTERN ( x_size = 16,                 { ** A stripe pattern ** }
+          y_size = 8,                  { ** for the sphere ** }
+          name   = MIRROR_STRIPE,
+
+          RECTANGLE (
+            start_x = 0, start_y = 0,
+            end_x   = 16, end_y   = 4,
+
+            diff    = (.1, .1, .1),
+            mirror  = (.9, .9, .9)
+          )
+        )
+
+PATTERN ( x_size = 60,                 { ** Checkered pattern ** }
+          y_size = 60,
+          name   = CHECK,
+          RECTANGLE (
+            start_x = 0,
+            start_y = 0,
+            end_x   = 30,
+            end_y   = 30,
+            diff    = (.1,1.0,.1),
+          )
+          RECTANGLE (
+            start_x = 30,
+            start_y = 30,
+            end_x   = 60,
+            end_y   = 60,
+            diff    = (.1,1.0,.1),
+          )
+        )
+
+{ *********************  OBJECTS  ********************* }
+
+{ ** ground (standard checkered type) ** }
+
+PARALLELOGRAM ( loc  = (  -10000, 0,  -10000),  { ** big! ** }
+                v1   = (20000, 0,    0),
+                v2   = (  0, 0, 20000),
+
+                diff = (  .8, .8, 0),
+                pattern = CHECK
+                xmult = 2
+                ymult = 2
+              )
+
+BEGIN_BBOX
+
+    { ** Horizontal pole ** }
+
+
+    SPHERE ( loc = (200, 90, -80),
+             radius = 35,
+             diff = (.7, .3, .5),
+
+             pattern = MIRROR_STRIPE,
+             xmult   = 1.5,
+             ymult   = 1.5
+           )
+
+    QUADRATIC ( loc = (200, 90, 1),
+
+                a    = 1,
+                b    = 1,
+                c    = 0,
+                d    = 150,
+                xmin = -13,
+                xmax = 13,
+                ymin = -13,
+                ymax = 13,
+                zmin = -80,
+                zmax = 80,
+
+                diff = (.8, .1, .1)
+                reflect  = .65
+                sreflect = 20
+              )
+
+    SPHERE ( loc = (200, 90, 80),
+             radius = 35,
+             diff = (.7, .3, .5),
+
+             pattern = MIRROR_STRIPE,
+             xmult   = 1.5,
+             ymult   = 1.5
+           )
+
+END_BBOX
+
+{ ** Bunch of floating rings ** }
+
+BEGIN_BBOX
+
+    BEGIN_BBOX
+
+        RING ( loc   = (150, 20, 0),
+               v1    = (1, 0, 0)
+               v2    = (0, 0, 1)
+               rad_2 = 15
+               rad_1 = 8
+
+               diff  = (.2, .8, .8)
+             )
+
+        RING ( loc   = (150, 30, 0),
+               v1    = (1, 0, 0)
+               v2    = (0, 0, 1)
+               rad_2 = 15
+               rad_1 = 8
+
+               diff  = (.2, .8, .8)
+             )
+
+    END_BBOX
+
+    BEGIN_BBOX
+
+        RING ( loc   = (150, 40, 0),
+               v1    = (1, 0, 0)
+               v2    = (0, 0, 1)
+               rad_2 = 15
+               rad_1 = 8
+
+               diff  = (.2, .8, .8)
+             )
+
+        RING ( loc   = (150, 50, 0),
+               v1    = (1, 0, 0)
+               v2    = (0, 0, 1)
+               rad_2 = 15
+               rad_1 = 8
+
+               diff  = (.2, .8, .8)
+             )
+
+    BEGIN_BBOX
+
+    BEGIN_BBOX
+
+        RING ( loc   = (150, 60, 0),
+               v1    = (1, 0, 0)
+               v2    = (0, 0, 1)
+               rad_2 = 15
+               rad_1 = 8
+
+               diff  = (.2, .8, .8)
+             )
+
+        RING ( loc   = (150, 70, 0),
+               v1    = (1, 0, 0)
+               v2    = (0, 0, 1)
+               rad_2 = 15
+               rad_1 = 8
+
+               diff  = (.2, .8, .8)
+             )
+
+        RING ( loc   = (150, 80, 0),
+               v1    = (1, 0, 0)
+               v2    = (0, 0, 1)
+               rad_2 = 15
+               rad_1 = 8
+
+               diff  = (.2, .8, .8)
+             )
+
+    END_BBOX
+
+END_BBOX
+
+{ ** Base - slightly reflective ** }
+
+BEGIN_BBOX
+
+    PARALLELOGRAM ( loc  = ( 100, 10,-100),
+                    v1   = ( 0,   0,  200),
+                    v2   = ( 200, 0,    0),
+
+                    diff   = ( .6, .4, .4),
+                    dither = 1
+                  )
+
+    PARALLELOGRAM ( loc  = ( 100,  0,-100),
+                    v1   = (   0,  0, 200),
+                    v2   = (   0, 10,   0),
+
+                    diff   = ( .3, .1, .1),
+                    mirror = ( .4, .2, .2)
+                  )
+
+END_BBOX
+
+{ ** An observer ** }
+
+OBSERVER ( loc    = (-20, 110, -40)
+           lookat = (200, 50, 0)
+         )
+
+{ ** A lamp (really, 2 lamps ) ** }
+
+LAMP ( loc = (120, 140, 50),
+       radius = 5,
+       dist = 90
+     )
+
+LAMP ( loc = (100, 55, -70),
+       radius = 5,
+       dist = 95
+     )
+
+{ ** Might as well make the sky dark blue ** }
+
+SKY  ( horiz  = (.2, .2, .55),
+       zenith = (.1, .1, .25),
+       dither = 1
+     )
+
+
+

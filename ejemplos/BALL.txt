@@ -1,0 +1,30 @@
+{*******************************
+            balls
+ *******************************}
+
+FILE_NAME = BALL.BMP
+
+    BEGIN_BBOX
+        SPHERE    ( loc = (50, 25, -40),
+                    radius = 5,
+                    diff   = (.9,.9,.9),
+                    mirror = (0,0,0),
+                    dither = 0
+                  )
+    END_BBOX
+
+{ ** An observer ** }
+OBSERVER ( loc    = (40, 25, 30),
+           lookat = (50, 0, -100)
+         )
+{ ** Two lamps ** }
+LAMP ( loc = (65, 70, 20),
+       radius = 5,
+       dist = 45
+     )
+LAMP ( loc = (30, 55, -10),
+       radius = 5,
+       dist = 25
+     )
+
+FOC_LENGTH = 80

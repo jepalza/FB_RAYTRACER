@@ -1,0 +1,12 @@
+Original "RAYSRC.ZIP" localizado en un CD-ROM "ShareWare" de 1990.
+Adaptado a FreeBasic < https://www.freebasic.net/ > por Joseba Epalza <jepalza> Mayo 2026
+Derechos y obligaciones -> ver "DOC\README.TXT" original
+Todos los documentos originales de 1989 en la carpeta DOC
+
+Modificaciones y/o mejoras:
+* el formato de salida original era TARGA, ahora es BMP
+* permite previsualizar en pantalla el progreso real
+* los ficheros de escenas QRT son leidos integros en memoria 
+ (el original los leia linea a linea mientras los interpretaba)
+* permite resoluciones mayores
+ (el original solo permitia 1280x1024 maximo)

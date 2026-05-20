@@ -1,0 +1,116 @@
+{*******************************
+            Room
+ *******************************}
+
+FILE_NAME = EROOM.BMP
+
+{ *********   Some pattern definitions ********** }
+PATTERN ( x_size = 16,                 { ** A checkered pattern ** }
+          y_size = 16,
+          name   = CHECK,
+          RECTANGLE (
+            start_x = 0, start_y = 0,
+            end_x   = 8, end_y   = 8,
+            diff    = (1, .20, .20);
+            dither  = 2,
+          )
+          RECTANGLE (
+            start_x = 8, start_y = 8,
+            end_x   = 16, end_y   = 16,
+            diff    = (1.00, .20, .20);
+            dither  = 2,
+          )
+        )
+
+PATTERN ( x_size = 80,                    { ** brick pattern ** }
+          y_size = 50,
+          name   = BRICK,
+          RECTANGLE (                     { 1st half brick 1 }
+            start_x = 0, start_y = 2,
+            end_x   = 18, end_y   = 23,
+            diff    = (1.00, .20, .20);
+            dither  = 2,
+          )
+          RECTANGLE (                     { 2nd hald brick 1 }
+            start_x = 62, start_y = 2,
+            end_x   = 80, end_y   = 23,
+            diff    = (1.00, .20, .20);
+            dither  = 2,
+          )
+          RECTANGLE (                     { brick 2 }
+            start_x = 22, start_y = 2,
+            end_x   = 58, end_y   = 23,
+            diff    = (.80, .20, .20);
+            dither  = 2,
+          )
+          RECTANGLE (                     { brick 3 }
+            start_x = 2, start_y = 27,
+            end_x   = 38, end_y   = 48,
+            diff    = (.85, .35, .10);
+            dither  = 2,
+          )
+          RECTANGLE (                     { brick 4 }
+            start_x = 42, start_y = 27,
+            end_x   = 78, end_y   = 48,
+            diff    = (.70, .25, .20);
+            dither  = 2,
+          )
+        )
+
+{ ***********   Now for the room itself ************ }
+    { ** four walls ** }
+    PARALLELOGRAM ( loc  = (  0,  0, -100),
+                    v1   = (100,  0,    0),
+                    v2   = (  0, 50,    0),
+                    pattern = BRICK,
+                    xmult = .2,
+                    ymult = .2
+                  )
+    PARALLELOGRAM ( loc  = (  0,  0,  100),
+                    v1   = (100,  0,    0),
+                    v2   = (  0, 50,    0),
+                    pattern = BRICK,
+                    xmult = .2,
+                    ymult = .2
+                  )
+    PARALLELOGRAM ( loc  = (100,  0, -100),
+                    v1   = (  0,  0,  200),
+                    v2   = (  0, 50,    0),
+                    pattern = BRICK
+                    xmult = .2,
+                    ymult = .2
+                  )
+    PARALLELOGRAM ( loc  = (  0,  0, -100),
+                    v1   = (  0,  0,  200),
+                    v2   = (  0, 50,    0),
+                    pattern = BRICK,
+                    xmult = .2,
+                    ymult = .2,
+                  )
+    { ** a floor ** }
+    PARALLELOGRAM ( loc  = (  0, 0,  100),
+                    v1   = (100, 0,    0),
+                    v2   = (  0, 0, -200),
+                    diff = (  0, 1, 0),
+                    pattern = CHECK
+                  )
+
+{ ** An observer ** }
+OBSERVER ( loc    = (40, 25, 30),
+           lookat = (50, 0, -100)
+         )
+{ ** Two lamps ** }
+LAMP ( loc = (65, 70, 20),
+       radius = 5,
+       dist = 45
+     )
+LAMP ( loc = (30, 55, -10),
+       radius = 5,
+       dist = 25
+     )
+SKY  ( horiz  = (0, 0, .55),
+       zenith = (0, 0, .15),
+       dither = 2
+     )
+
+FOC_LENGTH = 50
