@@ -35,3 +35,5 @@ No está garantizado el correcto funcionamiento del formato QRT, dado que me he 
 ![ray4](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/PIANO.jpg)
 
 ![ray5](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/PLUS.jpg)
+
+![ray5](https://github.com/jepalza/FB_RAYTRACER/blob/main/img/TABLE.jpg)
