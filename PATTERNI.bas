@@ -98,7 +98,7 @@ Function Get_Rect_Pattern() As PATTERN_PTR
       found = GetOpt(strs,@cinfo) 
       if (strcmp(strs,"START_X")=0) Then 
         pattern->startx=Get_Next_Num() 
-        f Or= 1: found = TRUE 
+        f Or= 1: found = TRUE  
       EndIf
   
       if (strcmp(strs,"START_Y")=0) Then 
@@ -123,7 +123,7 @@ Function Get_Rect_Pattern() As PATTERN_PTR
   
     if (found=0) Then Errors(UNDEFINED_PARAM,1104) 
  Wend
-    
+
   if (f<>15) Then Errors(TOO_FEW_PARMS,1105) 
 
   copy_colorinfo(@pattern->cinfo,@cinfo) 
@@ -140,7 +140,7 @@ End Function
 Function Get_Poly_Pattern() As PATTERN_PTR
   Dim As string strs  
   Dim As Integer ends, f, found 
-  Dim As PATTERN_PTR pattern, pointpatt ', new_pat() 
+  Dim As PATTERN_PTR pattern, pointpatt 
   Dim As CINFOS cinfo 
 
   ends=0
@@ -258,7 +258,7 @@ Function GetPattern() As Integer
          f Or= 4: found = TRUE 
       EndIf
   
-	  spat=Get_SubPattern(strs)
+	   spat=Get_SubPattern(strs)
       if (spat<>NULL) Then 
          spat->sibling=pattern->child 
          pattern->child=spat 

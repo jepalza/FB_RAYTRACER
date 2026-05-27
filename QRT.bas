@@ -263,7 +263,9 @@ End Sub
 
 sub read_QRT_Scene(filein as string)
 	' lee el fichero QRT de escena en memoria al completo
-	open filein for input as 1
+   dim as integer fichero_existe
+	fichero_existe=open(filein, for input, as 1)
+   if fichero_existe<>0 then print:print "ERROR: no existe el fichero...":beep:sleep:end
 		dim as string sa
 		while not(eof(1))
 			line input #1,sa
@@ -288,12 +290,12 @@ dim argv as string=command
 #if 0
 	dim as string ejem="plus"
 	'argv="ejemplos\"+ejem+".txt -xres 1024 -yres 768 -foclen 7 -aspect .5 -rgb 255 " ' pruebas
-	'argv="ejemplos\"+ejem+".txt -xres 1024 -yres 768 -aspect .65" ' pruebas
-	argv="ejemplos\"+ejem+".txt -xres 640 -yres 480 -aspect .65 -rgb 200" ' pruebas
+	argv="ejemplos\"+ejem+".txt -xres 1024 -yres 768 -aspect .65 -rgb 200" ' pruebas
+	'argv="ejemplos\"+ejem+".txt -xres 640 -yres 480 -rgb 200" ' pruebas
 #endif
 
-#if 0
-argv=argv+" -xres 1024 -yres 768 -aspect .7 -rgb 200"
+#if 1
+argv=argv+" -xres 1024 -yres 768 -aspect .65 -rgb 200"
 #endif
 
 Print #99, "Quick Ray Trace: Copyright 1988, 1989 Steve Koren"
@@ -307,10 +309,10 @@ init_world()
 
 Parse_CL_Args(argv) 
 
-display=1 ' salida grafica
-if display then screenres 1280,1024,32
-
 read_QRT_Scene(filein)
+
+display=1 ' salida grafica
+if display then screenres 1024,768,32
 
 if LoadWorld()=0 Then Errors(SYNTAX_ERROR,2) 
 

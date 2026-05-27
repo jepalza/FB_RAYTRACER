@@ -107,8 +107,8 @@ Sub Sphere_Pos(obj As OBJ_PTR, locs As VECT_PTR, byref pos1 As Single, byref pos
 
     VecSubtract(@delta,locs, @obj->locs) 
 
-    pos1 = atan2w(delta.x,delta.y) * obj->vect1.x 
-    pos2 = atan2w(sqr(POW(delta.x)+POW(delta.y)),delta.z) * obj->vect1.x 
+    pos1 = atan2w(delta.x,delta.y) * obj->vect1.x
+    pos2 = atan2w(sqr(POW(delta.x)+POW(delta.y)),delta.z) * obj->vect1.x
 End Sub
 
 

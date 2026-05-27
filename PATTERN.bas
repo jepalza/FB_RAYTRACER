@@ -37,16 +37,17 @@ Function Find_Color(obj As OBJ_PTR, pattern As PATTERN_PTR ,locs As VECT_PTR ,ci
 # endif
 
   /' find objects relative position '/
-
+  ' nota: ultimo PARAM no se emplea en SPHERE_POS (RELPOS.BAS), es solo compatibilidad
+  '       solo se emplea en PLANE_POS y QUADRATIC_POS (RELPOS.BAS)
   ObjData(obj->types).RelPos(obj,locs,pos1,pos2,FALSE) ' revisar 
 
   pos1 /= xmult /' x and y multipliers '/
   pos2 /= ymult /' for pattern sizing  '/
 
-  modx = int(pos1 \ pattern->xsize) 
+  modx = fix(pos1) \ pattern->xsize
   if (pos1<0) Then modx-=1  
 
-  mody = int(pos2 \ pattern->ysize) 
+  mody = fix(pos2) \ pattern->ysize
   if (pos2<0) Then mody-=1  
 
   modpos1 = pos1 - (modx * pattern->xsize) 
@@ -71,61 +72,12 @@ Function Find_Color(obj As OBJ_PTR, pattern As PATTERN_PTR ,locs As VECT_PTR ,ci
 End Function
 
 
-/'*********************************************************
-
-         Determines if point is inside rectangle
-
- *********************************************************'/
-
-Function Rect_Hit(pos1 As Single , pos2 As Single , patt As PATTERN_PTR) As Integer
-# ifdef ROBUST
-    if (patt->types <> RECT_PATTERN) Then 
-      Errors(INTERNAL_ERROR,1003)
-    EndIf
-# endif
-
-  if (pos1 > patt->startx) AndAlso _
-	 (pos1 < patt->endx) AndAlso _
-	 (pos2 > patt->starty) AndAlso _
-	 (pos2 < patt->endy) Then _
-			return(TRUE) 
-
-  return(FALSE) 
-End Function
 
 
 /'*********************************************************
-
-         Determines if point is inside circle
-
- *********************************************************'/
-
-Function Circle_Hit(pos1 As Single , pos2 As Single , patt As PATTERN_PTR) As Integer
-  Dim As Single rad, a, b 
-
-# ifdef ROBUST
-    if (patt->types <> CIRCLE_PATTERN) Then 
-      Errors(INTERNAL_ERROR,1004)
-    EndIf
-# endif
-
-/'  a = (pos1 - patt->radius);   '/   /' bug in damn compiler  '/
-/'  b = (pos2 - patt->radius);   '/   /' we have to break up   '/
-                                  /' long float operations '/
-  rad = POW(pos1 - patt->radius) + POW(pos2 - patt->radius) 
-                                  /'  rad = POW(a)+POW(b); MMT '/
-  if (rad <= POW(patt->radius)) Then return(TRUE) 
-  return(FALSE) 
-End Function
-
-
-/'*********************************************************
-
    Determines if point px, py intersects lines x1,y1,x2,y2.
    Returns true if it does.
-
  *********************************************************'/
-
 Function line_intersect(px As Single, py As Single, x1 As Single, y1 As Single, x2 As Single, y2 As Single) As Integer
   Dim As Single t 
 
@@ -148,12 +100,54 @@ Function line_intersect(px As Single, py As Single, x1 As Single, y1 As Single, 
   return(FALSE) 
 End Function
 
+
+
 /'*********************************************************
-
-         Determines if point is inside Polygon
-
+         Determines if point is inside rectangle
  *********************************************************'/
+Function Rect_Hit(pos1 As Single , pos2 As Single , patt As PATTERN_PTR) As Integer
+# ifdef ROBUST
+    if (patt->types <> RECT_PATTERN) Then 
+      Errors(INTERNAL_ERROR,1003)
+    EndIf
+# endif
 
+  if (pos1 > patt->startx) AndAlso _
+	  (pos1 < patt->endx)   AndAlso _
+	  (pos2 > patt->starty) AndAlso _
+	  (pos2 < patt->endy)   Then _
+			return(TRUE) 
+
+  return(FALSE) 
+End Function
+
+
+
+/'*********************************************************
+         Determines if point is inside circle
+ *********************************************************'/
+Function Circle_Hit(pos1 As Single , pos2 As Single , patt As PATTERN_PTR) As Integer
+  Dim As Single rad, a, b 
+
+# ifdef ROBUST
+    if (patt->types <> CIRCLE_PATTERN) Then 
+      Errors(INTERNAL_ERROR,1004)
+    EndIf
+# endif
+
+/'  a = (pos1 - patt->radius);   '/   /' bug in damn compiler  '/
+/'  b = (pos2 - patt->radius);   '/   /' we have to break up   '/
+                                  /' long float operations '/
+  rad = POW(pos1 - patt->radius) + POW(pos2 - patt->radius) 
+                                  /'  rad = POW(a)+POW(b); MMT '/
+  if (rad <= POW(patt->radius)) Then return(TRUE) 
+  return(FALSE) 
+End Function
+
+
+/'*********************************************************
+         Determines if point is inside Polygon
+ *********************************************************'/
 Function Poly_Hit(pos1 As Single , pos2 As Single , patt As PATTERN_PTR) As Integer
   Dim As Single xpos, ypos, nxpos, nypos 
   Dim As PATTERN_PTR lseg 

@@ -350,8 +350,8 @@ End Sub
 
  *********************************************************'/
 
-Function Ray_Hit(CurrObj As OBJ_PTR , lines As OBJ_PTR , byref MinT As Single , sflag As Short _
-					, fflag As Short , atten As VECT_PTR) As OBJ_PTR
+Function Ray_Hit(CurrObj As OBJ_PTR , lines As OBJ_PTR , byref MinT As Single , sflag As Short, _
+					fflag As Short , atten As VECT_PTR) As OBJ_PTR
   static As OBJ_PTR MinObj 
   Dim As VECTOR locs 
   Dim As OBJ_PTR obj 
@@ -546,7 +546,7 @@ Sub Screen_Trace()
       bbyte(x) = colors.b 
     Next
 
-    locate 8,1:Print "Trazando Linea:";y
+    locate 1,1:Print "Trazando Linea:";y
     Dump_Line_BMP(y,rbyte(),gbyte(),bbyte()) 
   Next
 

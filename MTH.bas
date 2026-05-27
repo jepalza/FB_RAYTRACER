@@ -11,12 +11,13 @@
     Returns pseudo random number between one and 100
 
  *********************************************************'/
-
+   randomize timer
 Function PsRand() As Integer
-  static As Integer vals=43 
+'  static As Integer vals=43 
 
-  vals=(vals*73+97) 
-  return(vals mod CNUM) 
+'  vals=(vals*73+97) 
+'  return(vals mod CNUM) 
+   return int(rnd(1)*100)
 End Function
 
 /'*********************************************************
@@ -39,9 +40,9 @@ End Sub
  *********************************************************'/
 
 Sub VectAddMult(v1 As VECT_PTR , k2 As Single , v2 As VECT_PTR , k3 As Single , v3 As VECT_PTR)
-  v1->x+=k2*(v2->x)+k3*(v3->x) 
-  v1->y+=k2*(v2->y)+k3*(v3->y) 
-  v1->z+=k2*(v2->z)+k3*(v3->z) 
+  v1->x+ = k2 *(v2->x) +k3*(v3->x) 
+  v1->y+ = k2 *(v2->y) +k3*(v3->y) 
+  v1->z+ = k2 *(v2->z) +k3*(v3->z) 
 End Sub
 
 /'*********************************************************
@@ -64,9 +65,9 @@ End Sub
  *********************************************************'/
 
 Sub VectorAdd(v1 As VECT_PTR , v2 As VECT_PTR , v3 As VECT_PTR)
-  v1->x=v2->x+v3->x 
-  v1->y=v2->y+v3->y 
-  v1->z=v2->z+v3->z 
+  v1->x = v2->x + v3->x 
+  v1->y = v2->y + v3->y 
+  v1->z = v2->z + v3->z 
 End Sub
 
 
@@ -77,9 +78,9 @@ End Sub
  *********************************************************'/
 
 Sub VectorMult(v1 As VECT_PTR , v2 As VECT_PTR , v3 As VECT_PTR)
-  v1->x=v2->x*v3->x 
-  v1->y=v2->y*v3->y 
-  v1->z=v2->z*v3->z 
+  v1->x = v2->x * v3->x 
+  v1->y = v2->y * v3->y 
+  v1->z = v2->z * v3->z 
 End Sub
 
 
@@ -90,9 +91,9 @@ End Sub
  *********************************************************'/
 
 Sub VecSubtract(v1 As VECT_PTR , v2 As VECT_PTR , v3 As VECT_PTR) /' 1=2-3 '/
-  v1->x=v2->x-v3->x 
-  v1->y=v2->y-v3->y 
-  v1->z=v2->z-v3->z 
+  v1->x = v2->x - v3->x 
+  v1->y = v2->y - v3->y 
+  v1->z = v2->z - v3->z 
 End Sub
 
 
@@ -116,9 +117,9 @@ End Sub
  *********************************************************'/
 
 Sub SVectEQ(v1 As SVECT_PTR , v2 As SVECT_PTR) /' short vector v1=v2 '/
-  v1->r=v2->r 
-  v1->g=v2->g 
-  v1->b=v2->b 
+  v1->r = v2->r 
+  v1->g = v2->g 
+  v1->b = v2->b 
 End Sub
 
 
@@ -129,9 +130,9 @@ End Sub
  *********************************************************'/
 
 Sub VectEQ(v1 As VECT_PTR , v2 As VECT_PTR)/' long vector v1=v2 '/
-  v1->x=v2->x 
-  v1->y=v2->y 
-  v1->z=v2->z 
+  v1->x = v2->x 
+  v1->y = v2->y 
+  v1->z = v2->z 
 End Sub
 
 
@@ -158,9 +159,9 @@ End Sub
  *********************************************************'/
 
 Sub CrossProd(v1 As VECT_PTR , v2 As VECT_PTR , v3 As VECT_PTR)
-  v1->x=v2->y*v3->z-v2->z*v3->y 
-  v1->y=v2->z*v3->x-v2->x*v3->z 
-  v1->z=v2->x*v3->y-v2->y*v3->x 
+  v1->x = v2->y *v3->z -v2->z *v3->y 
+  v1->y = v2->z *v3->x -v2->x *v3->z 
+  v1->z = v2->x *v3->y -v2->y *v3->x 
 End Sub
 
 
@@ -176,9 +177,9 @@ Sub FindPos(pos_ As VECT_PTR , line2 As OBJ_PTR , t As Single)
     if (line2->types<>_LINE) Then Errors(INTERNAL_ERROR,401) 
 # endif
 
-  pos_->x=line2->locs.x+line2->vect1.x*t 
-  pos_->y=line2->locs.y+line2->vect1.y*t 
-  pos_->z=line2->locs.z+line2->vect1.z*t 
+  pos_->x = line2->locs.x +line2->vect1.x *t 
+  pos_->y = line2->locs.y +line2->vect1.y *t 
+  pos_->z = line2->locs.z +line2->vect1.z *t 
 End Sub
 
 /'*********************************************************
